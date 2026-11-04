@@ -1,8 +1,10 @@
 {
   "name": "Member One",
-  "cabinTitle": "Cabin 1",
+  "cabinTitle": "Reyaz",
   "cycles": [
+    { "cycle": 3, "date": "2026-11-04", "status":"In progress", "notes":"Set up my cabin. First update." },
     { "cycle": 2, "date": "2026-11-04", "status": "In progress", "notes": "Working on the main task for this cycle." },
     { "cycle": 1, "date": "2026-10-28", "status": "Done", "notes": "Set up my cabin. First update." }
+    
   ]
 }
