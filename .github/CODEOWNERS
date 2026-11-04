@@ -1,0 +1,18 @@
+# Each person owns their own cabin folder.
+# Replace the usernames below with real GitHub usernames.
+# With branch protection ("Require review from Code Owners"), changes inside a
+# cabin folder need that cabin's owner, so nobody can edit someone else's cabin.
+
+/cabins/member1/ @github-username-1
+/cabins/member2/ @github-username-2
+/cabins/member3/ @github-username-3
+/cabins/member4/ @github-username-4
+/cabins/member5/ @github-username-5
+/cabins/member6/ @github-username-6
+
+# Shared files (home page, template, data list): the repo admin.
+/index.html       @admin-username
+/css/             @admin-username
+/js/              @admin-username
+/data/            @admin-username
+/cabins/_template/ @admin-username

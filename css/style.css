@@ -1,3 +1,4 @@
+/* Village (home page) styles. Each cabin has its own style.css inside its folder. */
 :root {
   --wood-dark: #4a2f1b;
   --wood: #8b5a2b;
@@ -27,21 +28,12 @@ body {
 .site-header h1 { margin: 0 0 0.25rem; }
 .site-header p { margin: 0; opacity: 0.9; }
 
-.back-link {
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  color: var(--wood-light);
-  text-decoration: none;
-}
-.back-link:hover { text-decoration: underline; }
-
 main {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
-/* ---------- Home: cabin grid ---------- */
 .cabin-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -68,42 +60,10 @@ main {
 }
 .cabin-card .icon { font-size: 3rem; }
 .cabin-card h2 { margin: 0.5rem 0 0.25rem; color: var(--wood-dark); }
-.cabin-card .owner { margin: 0; color: var(--pine); font-weight: 600; }
+.cabin-card .owner { margin: 0; color: var(--pine); font-weight: 600; min-height: 1.5em; }
 .cabin-card .latest { margin: 0.75rem 0 0; font-size: 0.9rem; color: #6b5a4a; }
 
-/* ---------- Cabin page ---------- */
-.cycle-list { list-style: none; margin: 0; padding: 0; }
-
-.cycle {
-  background: #fff;
-  border-left: 6px solid var(--wood);
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
-  margin-bottom: 1rem;
-  box-shadow: var(--shadow);
-}
-.cycle h3 { margin: 0 0 0.25rem; }
-.cycle .date { color: #6b5a4a; font-size: 0.9rem; }
-.cycle p { margin: 0.5rem 0 0; }
-
-.badge {
-  display: inline-block;
-  padding: 0.1rem 0.6rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  background: #eee;
-  margin-left: 0.5rem;
-}
-.badge.done { background: #d7efdc; color: #1d5a2c; }
-.badge.in-progress { background: #fff0c9; color: #7a5600; }
-.badge.planned { background: #e1e8f5; color: #28457a; }
-
-.empty, .loading, .error {
-  text-align: center;
-  color: #6b5a4a;
-  grid-column: 1 / -1;
-}
+.loading, .error { text-align: center; color: #6b5a4a; grid-column: 1 / -1; }
 .error { color: #a12b2b; font-weight: 600; }
 
 .site-footer {

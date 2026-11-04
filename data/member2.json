@@ -2,6 +2,6 @@
   "name": "Member Two",
   "cabinTitle": "Cabin 2",
   "cycles": [
-    { "cycle": 1, "date": "2026-10-28", "status": "Planned", "notes": "Plan for the first cycle goes here." }
+    { "cycle": 1, "date": "2026-10-28", "status": "Planned", "notes": "Plan for the first cycle goes here."     }
   ]
 }

@@ -1,0 +1,71 @@
+/* ============================================================
+   YOUR CABIN'S STYLE. Change anything you like!
+   Start by changing the three colours below.
+   ============================================================ */
+:root {
+  --accent: #2b5d8b;
+  --bg: #eaf2fa;
+  --text: #2b1d12;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.back {
+  display: inline-block;
+  margin: 1rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.back:hover { text-decoration: underline; }
+
+.hero {
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+.hero .icon { font-size: 3.5rem; }
+.hero h1 { margin: 0.25rem 0; }
+.hero p { margin: 0; opacity: 0.9; }
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+#cycles { list-style: none; margin: 0; padding: 0; }
+
+.cycle {
+  background: #fff;
+  border-left: 6px solid var(--accent);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+.cycle h3 { margin: 0 0 0.25rem; }
+.cycle .date { font-size: 0.9rem; opacity: 0.7; }
+.cycle p { margin: 0.5rem 0 0; }
+
+.badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+}
+
+.empty { text-align: center; opacity: 0.7; }

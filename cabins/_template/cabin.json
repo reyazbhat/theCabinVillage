@@ -1,0 +1,8 @@
+{
+  "name": "Your Name",
+  "cabinTitle": "Your Cabin",
+  "icon": "🛖",
+  "cycles": [
+    { "cycle": 1, "date": "2026-11-05", "status": "Planned", "notes": "Plan for the first cycle goes here." }
+  ]
+}

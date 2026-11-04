@@ -1,4 +1,5 @@
-// Shared script for index.html (home) and cabin.html (single cabin).
+// Home page script. Draws one card per cabin.
+// Each cabin keeps its own info in cabins/<id>/cabin.json.
 
 const MEMBERS_URL = "data/members.json";
 
@@ -15,83 +16,40 @@ function el(tag, className, text) {
   return node;
 }
 
-function statusClass(status) {
-  return String(status || "").toLowerCase().replace(/\s+/g, "-");
-}
-
-/* ---------------- Home page ---------------- */
 async function renderHome(grid) {
-  const members = await loadJSON(MEMBERS_URL);
+  const ids = await loadJSON(MEMBERS_URL);
   grid.replaceChildren();
 
-  for (const m of members) {
+  for (const id of ids) {
     const card = el("a", "cabin-card");
-    card.href = `cabin.html?member=${encodeURIComponent(m.id)}`;
+    card.href = `cabins/${encodeURIComponent(id)}/`;
 
-    card.append(
-      el("div", "icon", m.icon || "🛖"),
-      el("h2", "", m.cabinTitle || `${m.name}'s Cabin`),
-      el("p", "owner", m.name)
-    );
-
-    // Show the latest cycle (if the member's file loads).
+    const icon = el("div", "icon", "🛖");
+    const title = el("h2", "", id);
+    const owner = el("p", "owner", "");
     const latest = el("p", "latest", "…");
-    card.append(latest);
-    loadJSON(`data/${m.id}.json`)
-      .then((d) => {
-        const c = d.cycles && d.cycles[0];
-        latest.textContent = c ? `Latest: Cycle ${c.cycle} · ${c.status}` : "No cycles yet";
+    card.append(icon, title, owner, latest);
+    grid.append(card);
+
+    // Fill the card from that cabin's own cabin.json.
+    // If one cabin's file is broken, only that card is affected.
+    loadJSON(`cabins/${id}/cabin.json`)
+      .then((c) => {
+        icon.textContent = c.icon || "🛖";
+        title.textContent = c.cabinTitle || id;
+        owner.textContent = c.name || "";
+        const first = c.cycles && c.cycles[0];
+        latest.textContent = first ? `Latest: Cycle ${first.cycle} · ${first.status}` : "No cycles yet";
       })
       .catch(() => { latest.textContent = "No data yet"; });
-
-    grid.append(card);
   }
 }
 
-/* ---------------- Cabin page ---------------- */
-async function renderCabin(view) {
-  const id = new URLSearchParams(location.search).get("member");
-  const members = await loadJSON(MEMBERS_URL);
-
-  // Only allow ids that exist in members.json.
-  const member = members.find((m) => m.id === id);
-  if (!member) throw new Error("That cabin doesn't exist.");
-
-  const data = await loadJSON(`data/${member.id}.json`);
-  const title = data.cabinTitle || member.cabinTitle || `${member.name}'s Cabin`;
-
-  document.title = `${title} · The Cabin Village`;
-  document.getElementById("cabin-title").textContent = `${member.icon || "🛖"} ${title}`;
-  document.getElementById("cabin-owner").textContent = `Resident: ${data.name || member.name}`;
-
-  view.replaceChildren();
-  const cycles = data.cycles || [];
-  if (!cycles.length) {
-    view.append(el("p", "empty", "No cycle updates yet."));
-    return;
-  }
-
-  const list = el("ul", "cycle-list");
-  for (const c of cycles) {
-    const li = el("li", "cycle");
-    const h3 = el("h3", "", `Cycle ${c.cycle}`);
-    h3.append(el("span", `badge ${statusClass(c.status)}`, c.status || "—"));
-    li.append(h3, el("div", "date", c.date || ""), el("p", "", c.notes || ""));
-    list.append(li);
-  }
-  view.append(list);
-}
-
-/* ---------------- Boot ---------------- */
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("cabin-grid");
-  const view = document.getElementById("cabin-view");
-  const target = grid || view;
-  const run = grid ? renderHome(grid) : view ? renderCabin(view) : null;
-  if (run) {
-    run.catch((err) => {
-      target.replaceChildren(el("p", "error", err.message));
-      console.error(err);
-    });
-  }
+  if (!grid) return;
+  renderHome(grid).catch((err) => {
+    grid.replaceChildren(el("p", "error", err.message));
+    console.error(err);
+  });
 });
