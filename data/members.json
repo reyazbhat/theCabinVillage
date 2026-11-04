@@ -1,0 +1,8 @@
+[
+  { "id": "member1", "name": "Member One",   "cabinTitle": "Cabin 1", "icon": "🏡" },
+  { "id": "member2", "name": "Member Two",   "cabinTitle": "Cabin 2", "icon": "🛖" },
+  { "id": "member3", "name": "Member Three", "cabinTitle": "Cabin 3", "icon": "🏕️" },
+  { "id": "member4", "name": "Member Four",  "cabinTitle": "Cabin 4", "icon": "⛺" },
+  { "id": "member5", "name": "Member Five",  "cabinTitle": "Cabin 5", "icon": "🌲" },
+  { "id": "member6", "name": "Member Six",   "cabinTitle": "Cabin 6", "icon": "🏔️" }
+]
