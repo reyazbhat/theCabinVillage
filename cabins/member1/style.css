@@ -28,14 +28,31 @@ body {
 .back:hover { text-decoration: underline; }
 
 .hero {
+display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;          /* stacks neatly on a phone */
+  gap: 1.5rem;
   background: var(--accent);
   color: #fff;
-  text-align: center;
   padding: 2.5rem 1rem;
+
 }
+.hero-text { text-align: left; }
 .hero .icon { font-size: 3.5rem; }
 .hero h1 { margin: 0.25rem 0; }
 .hero p { margin: 0; opacity: 0.9; }
+
+.avtaar{
+ width: 130px;
+  height: 130px;
+  border-radius: 50%;       /* makes it a circle */
+  object-fit: cover;        /* crops instead of squashing */
+  object-position: center top; /* move the crop: try "center" or "50% 20%" */
+  border: 4px solid #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+}
 
 main {
   max-width: 800px;
