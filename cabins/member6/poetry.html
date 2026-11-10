@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#B7CDB0">
+  <title>Poetry | RAUDAH</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="nature">
+
+<div class="page-layout">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🏡</div>
+      <h2>The Cabin<br>Village</h2>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="./index.html" class="nav-link"><span class="nav-icon">⌂</span><span>Home</span></a>
+      <a href="./index.html#profile" class="nav-link"><span class="nav-icon">👤</span><span>Profile</span></a>
+      <a href="projects.html" class="nav-link"><span class="nav-icon">🚀</span><span>Projects</span></a>
+      <a href="poetry.html" class="nav-link active"><span class="nav-icon">✍️</span><span>Poetry</span></a>
+      <a href="./index.html#skills" class="nav-link"><span class="nav-icon">⚡</span><span>Skills</span></a>
+      <a href="./index.html#achievement" class="nav-link"><span class="nav-icon">🏆</span><span>Achievement</span></a>
+      <a href="./index.html#gallery" class="nav-link"><span class="nav-icon">🖼️</span><span>Gallery</span></a>
+      <a href="./index.html#diary" class="nav-link"><span class="nav-icon">📖</span><span>Diary</span></a>
+      <a href="./index.html#gaming" class="nav-link"><span class="nav-icon">🎮</span><span>Gaming</span></a>
+    </nav>
+  </aside>
+
+  <div class="main-content">
+
+    <nav class="topbar">
+      <a href="./index.html">← Back to RAUDAH</a>
+
+      <div class="theme-control">
+        <button class="theme-toggle" id="theme-toggle" type="button"
+          aria-label="Open theme options" aria-expanded="false"
+          aria-controls="theme-menu" title="Change RAUDAH theme">☼</button>
+
+        <div class="theme-menu" id="theme-menu" hidden>
+          <div class="theme-menu-heading">
+            <div>
+              <strong>RAUDAH Atmosphere</strong>
+              <small>Choose your mood</small>
+            </div>
+            <button class="theme-close" id="theme-close" type="button" aria-label="Close theme menu">×</button>
+          </div>
+
+          <button class="theme-mode-button" type="button" data-mode="auto">
+            <span>⏱️</span>
+            <span><strong>Automatic</strong><small>Changes with local time</small></span>
+            <span class="mode-check"></span>
+          </button>
+
+          <button class="theme-mode-button" type="button" data-mode="manual">
+            <span>🎨</span>
+            <span><strong>Manual themes</strong><small>Choose a theme yourself</small></span>
+            <span class="mode-check"></span>
+          </button>
+
+          <div class="theme-menu-divider"></div>
+          <p class="theme-group-label">TIME OF DAY</p>
+          <div class="theme-options">
+            <button class="theme-option" type="button" data-theme-choice="sunrise"><span>🌅</span>Sunrise</button>
+            <button class="theme-option" type="button" data-theme-choice="day"><span>☀️</span>Day</button>
+            <button class="theme-option" type="button" data-theme-choice="afternoon"><span>🌤️</span>Afternoon</button>
+            <button class="theme-option" type="button" data-theme-choice="sunset"><span>🌇</span>Sunset</button>
+            <button class="theme-option" type="button" data-theme-choice="night"><span>🌙</span>Night</button>
+          </div>
+
+          <div class="theme-menu-divider"></div>
+          <p class="theme-group-label">WEATHER &amp; MOOD</p>
+          <div class="theme-options">
+            <button class="theme-option" type="button" data-theme-choice="fullmoon"><span>🌕</span>Full Moon</button>
+            <button class="theme-option" type="button" data-theme-choice="rain"><span>🌧️</span>Rain</button>
+            <button class="theme-option" type="button" data-theme-choice="hot"><span>🔥</span>Hot Day</button>
+            <button class="theme-option" type="button" data-theme-choice="nature"><span>🌿</span>Nature</button>
+          </div>
+
+          <p class="theme-menu-note" id="theme-status" aria-live="polite">Automatic mode is on.</p>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-icon"><div class="icon">✍️</div></div>
+      <div class="hero-text">
+        <h1>POETRY</h1>
+        <p class="tagline">Words from the heart.</p>
+        <div class="hero-details">
+          <span class="hero-badge">🏡 RAUDAH</span>
+          <span class="hero-badge">✨ My little world of words</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="dashboard">
+        <div class="panel">
+          <div class="profile-heading-row">
+            <h2>✍️ My Poetry</h2>
+            <button class="profile-edit-button" id="add-poetry-button" type="button">＋ Add Poetry</button>
+          </div>
+
+          <form class="profile-edit-form" id="poetry-form" hidden>
+            <h3 id="poetry-form-heading">Add New Poetry</h3>
+
+            <div class="profile-form-grid">
+              <label class="profile-form-field">
+                <span>Poetry Title *</span>
+                <input id="poetry-title" type="text" maxlength="150"
+                  placeholder="Give your poetry a title" required>
+              </label>
+
+              <label class="profile-form-field">
+                <span>Your Poetry *</span>
+                <textarea id="poetry-content" maxlength="10000"
+                  rows="8" placeholder="Write your thoughts and verses here..."
+                  required></textarea>
+              </label>
+            </div>
+
+            <div class="profile-form-actions">
+              <button class="profile-save-button" id="save-poetry-button" type="submit">Save Poetry</button>
+              <button class="profile-cancel-button" id="cancel-poetry-button" type="button">Cancel</button>
+            </div>
+
+            <p class="profile-form-message" id="poetry-form-message"
+              role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="explore-section">
+        <h2>✨ Words from Your Heart</h2>
+        <div id="poetry-list" class="feature-section" aria-live="polite">
+          <p class="loading">Loading poetry...</p>
+        </div>
+        <p class="profile-form-message" id="poetry-status"
+          role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Feel · Write · Remember</p>
+      <span>RAUDAH Poetry ✍️</span>
+    </footer>
+
+  </div>
+</div>
+
+<script src="poetry.js"></script>
+</body>
+</html>

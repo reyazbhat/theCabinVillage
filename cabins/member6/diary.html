@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Diary | RAUDAH</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .diary-dashboard { max-width: 1150px; margin: 30px auto; }
+        .diary-book {
+            display: grid;
+            grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.6fr);
+            background: var(--panel-bg, #f7f3e9);
+            border: 1px solid rgba(90, 110, 82, .25);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 12px 35px rgba(40, 55, 35, .12);
+            min-height: 570px;
+        }
+        .diary-pages {
+            padding: 24px;
+            background: rgba(117, 143, 105, .12);
+            border-right: 1px solid rgba(90, 110, 82, .22);
+        }
+        .diary-pages h2 { margin: 0 0 8px; }
+        .diary-pages-intro { font-size: .9rem; opacity: .75; margin-bottom: 20px; }
+        .new-page-button, .diary-action-button {
+            border: 0;
+            border-radius: 10px;
+            padding: 11px 16px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 600;
+            background: #718b68;
+            color: white;
+        }
+        .new-page-button { width: 100%; margin-bottom: 20px; }
+        .diary-page-list { display: grid; gap: 9px; }
+        .diary-page-item {
+            width: 100%;
+            text-align: left;
+            padding: 13px;
+            border: 1px solid rgba(90, 110, 82, .2);
+            border-radius: 10px;
+            background: rgba(255,255,255,.45);
+            color: inherit;
+            cursor: pointer;
+            font: inherit;
+        }
+        .diary-page-item.active {
+            background: rgba(113, 139, 104, .25);
+            border-color: #718b68;
+        }
+        .diary-page-item strong, .diary-page-item small { display: block; }
+        .diary-page-item small { margin-top: 5px; opacity: .7; }
+        .diary-writing-area { padding: 30px clamp(18px, 4vw, 48px); }
+        .diary-paper {
+            min-height: 490px;
+            padding: 22px clamp(12px, 3vw, 30px);
+            border-radius: 8px;
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    transparent 0,
+                    transparent 34px,
+                    rgba(116, 139, 107, .20) 35px
+                ),
+                #fffdf5;
+            color: #394536;
+            box-shadow: inset 5px 0 0 rgba(150, 115, 88, .12),
+                        0 3px 12px rgba(40, 55, 35, .08);
+        }
+        .diary-paper input, .diary-paper textarea {
+            display: block;
+            width: 100%;
+            border: 0;
+            outline: none;
+            background: transparent;
+            color: #394536;
+            font: inherit;
+        }
+        .diary-paper input {
+            font-family: Georgia, serif;
+            font-size: 1.65rem;
+            font-weight: bold;
+            padding: 5px 0 12px;
+            border-bottom: 1px solid rgba(116, 139, 107, .3);
+            margin-bottom: 12px;
+        }
+        .diary-paper input::placeholder, .diary-paper textarea::placeholder {
+            color: #8b9685;
+        }
+        .diary-paper input[type="date"] {
+            font-family: inherit;
+            font-size: .9rem;
+            font-weight: normal;
+            width: auto;
+            margin-bottom: 12px;
+        }
+        .diary-paper textarea {
+            min-height: 350px;
+            resize: vertical;
+            line-height: 35px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.08rem;
+            padding: 0;
+        }
+        .diary-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .diary-action-button.secondary { background: #8c927f; }
+        .diary-action-button.danger { background: #a65f56; }
+        .diary-message { min-height: 24px; margin-top: 12px; font-size: .9rem; }
+        .diary-empty {
+            text-align: center;
+            padding: 75px 15px;
+            opacity: .75;
+        }
+        .diary-empty .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+        @media (max-width: 720px) {
+            .diary-book { grid-template-columns: 1fr; }
+            .diary-pages { border-right: 0; border-bottom: 1px solid rgba(90,110,82,.22); }
+            .diary-page-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .diary-writing-area { padding: 18px 12px; }
+            .diary-paper { min-height: 440px; }
+        }
+        @media (max-width: 420px) {
+            .diary-page-list { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-layout">
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-icon">🏡</span>
+            <span>The Cabin Village</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="./index.html" class="nav-link"><span class="nav-icon">🏠</span><span>Home</span></a>
+            <a href="./index.html#profile" class="nav-link"><span class="nav-icon">👤</span><span>Profile</span></a>
+            <a href="projects.html" class="nav-link"><span class="nav-icon">📁</span><span>Projects</span></a>
+            <a href="poetry.html" class="nav-link"><span class="nav-icon">✍️</span><span>Poetry</span></a>
+            <a href="skills.html" class="nav-link"><span class="nav-icon">🌱</span><span>Skills</span></a>
+            <a href="achievement.html" class="nav-link"><span class="nav-icon">🏆</span><span>Achievement</span></a>
+            <a href="gallery.html" class="nav-link"><span class="nav-icon">🖼️</span><span>Gallery</span></a>
+            <a href="diary.html" class="nav-link active"><span class="nav-icon">📖</span><span>Diary</span></a>
+            <a href="gaming.html" class="nav-link"><span class="nav-icon">🎮</span><span>Gaming</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="../../index.html" class="nav-link"><span class="nav-icon">🌳</span><span>Village Home</span></a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="topbar-greeting">A quiet place for your thoughts</p>
+                <h2>My Personal Diary 📖</h2>
+            </div>
+            <div class="theme-control">
+                <button id="theme-toggle" class="theme-toggle" type="button">🎨 Theme</button>
+                <div id="theme-menu" class="theme-menu" hidden>
+                    <div class="theme-menu-heading">
+                        <strong>Choose your atmosphere</strong>
+                        <button id="theme-close" type="button">✕</button>
+                    </div>
+                    <div class="theme-mode-buttons">
+                        <button class="theme-mode-button" data-mode="auto" type="button">Automatic</button>
+                        <button class="theme-mode-button" data-mode="manual" type="button">Manual</button>
+                    </div>
+                    <div class="theme-options">
+                        <button class="theme-option" data-theme-choice="sunrise" type="button">🌅 Sunrise</button>
+                        <button class="theme-option" data-theme-choice="day" type="button">☀️ Day</button>
+                        <button class="theme-option" data-theme-choice="afternoon" type="button">🌤️ Afternoon</button>
+                        <button class="theme-option" data-theme-choice="sunset" type="button">🌇 Sunset</button>
+                        <button class="theme-option" data-theme-choice="night" type="button">🌙 Night</button>
+                        <button class="theme-option" data-theme-choice="fullmoon" type="button">🌕 Full Moon</button>
+                        <button class="theme-option" data-theme-choice="rain" type="button">🌧️ Rain</button>
+                        <button class="theme-option" data-theme-choice="hot" type="button">🔥 Hot Day</button>
+                        <button class="theme-option" data-theme-choice="nature" type="button">🌿 Nature</button>
+                    </div>
+                    <p id="theme-status" class="theme-menu-note">Automatic theme is on.</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-icon">📖</div>
+            <div class="hero-text">
+                <h1>Pages of My Life</h1>
+                <p>Some thoughts are meant to be written, remembered, and kept forever.</p>
+                <div class="hero-details"><span class="hero-badge">RAUDAH · PERSONAL JOURNAL</span></div>
+            </div>
+        </section>
+
+        <section class="dashboard diary-dashboard">
+            <div class="diary-book">
+                <aside class="diary-pages">
+                    <h2>My Book</h2>
+                    <p class="diary-pages-intro">Every page holds a memory.</p>
+                    <button id="new-page-button" class="new-page-button" type="button">＋ Write a New Page</button>
+                    <div id="diary-page-list" class="diary-page-list">
+                        <p>Loading your pages...</p>
+                    </div>
+                </aside>
+
+                <div class="diary-writing-area">
+                    <div id="diary-editor" class="diary-paper">
+                        <div class="diary-empty">
+                            <div class="empty-icon">📖</div>
+                            <h2>Your diary is waiting</h2>
+                            <p>Create your first page and start writing your story.</p>
+                            <button id="empty-new-page" class="diary-action-button" type="button">Write First Page</button>
+                        </div>
+                    </div>
+                    <p id="diary-message" class="diary-message" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Made with care · RAUDAH · The Cabin Village</p>
+        </footer>
+    </main>
+</div>
+<script src="diary.js"></script>
+</body>
+</html>
