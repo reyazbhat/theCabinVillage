@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#B7CDB0">
+  <title>Gallery | RAUDAH</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .gallery-upload-area {
+      margin-top: 20px;
+    }
+
+    .gallery-file-input {
+      display: block;
+      width: 100%;
+      padding: 18px;
+      border: 2px dashed var(--border-color, #9caf91);
+      border-radius: 12px;
+      background: var(--card-bg, rgba(255,255,255,0.35));
+      cursor: pointer;
+    }
+
+    .gallery-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .gallery-preview-card {
+      min-width: 0;
+      padding: 12px;
+      border-radius: 14px;
+      background: var(--card-bg, rgba(255,255,255,0.45));
+      border: 1px solid var(--border-color, rgba(100,120,90,0.3));
+    }
+
+    .gallery-preview-image {
+      display: block;
+      width: 100%;
+      height: 230px;
+      object-fit: contain;
+      background: rgba(0,0,0,0.07);
+      border-radius: 10px;
+    }
+
+    .gallery-preview-card label {
+      display: block;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .gallery-preview-card textarea {
+      width: 100%;
+      min-height: 65px;
+      margin-top: 6px;
+      padding: 10px;
+      border-radius: 8px;
+      resize: vertical;
+      font: inherit;
+    }
+
+    .gallery-remove-button {
+      margin-top: 10px;
+      padding: 8px 13px;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #ead4cb;
+      color: #573b32;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .gallery-card {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .gallery-card-image {
+      display: block;
+      width: 100%;
+      height: 260px;
+      object-fit: contain;
+      background: rgba(0,0,0,0.07);
+      border-radius: 10px;
+    }
+
+    .gallery-card-note {
+      margin: 12px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .gallery-card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .gallery-card-actions button {
+      padding: 8px 13px;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .gallery-edit-button {
+      background: #dce8d5;
+      color: #344b30;
+    }
+
+    .gallery-delete-button {
+      background: #ead4cb;
+      color: #573b32;
+    }
+
+    .gallery-empty {
+      padding: 25px;
+      text-align: center;
+    }
+
+    .gallery-hint {
+      margin-top: 10px;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    .gallery-form-message {
+      margin-top: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .gallery-preview-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-preview-image,
+      .gallery-card-image {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="nature">
+
+<div class="page-layout">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🏡</div>
+      <h2>The Cabin<br>Village</h2>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="./index.html" class="nav-link"><span class="nav-icon">⌂</span><span>Home</span></a>
+      <a href="./index.html#profile" class="nav-link"><span class="nav-icon">👤</span><span>Profile</span></a>
+      <a href="projects.html" class="nav-link"><span class="nav-icon">🚀</span><span>Projects</span></a>
+      <a href="poetry.html" class="nav-link"><span class="nav-icon">✍️</span><span>Poetry</span></a>
+      <a href="skills.html" class="nav-link"><span class="nav-icon">⚡</span><span>Skills</span></a>
+      <a href="achievement.html" class="nav-link"><span class="nav-icon">🏆</span><span>Achievement</span></a>
+      <a href="gallery.html" class="nav-link active"><span class="nav-icon">🖼️</span><span>Gallery</span></a>
+      <a href="diary.html" class="nav-link"><span class="nav-icon">📖</span><span>Diary</span></a>
+      <a href="gaming.html" class="nav-link"><span class="nav-icon">🎮</span><span>Gaming</span></a>
+    </nav>
+  </aside>
+
+  <div class="main-content">
+
+    <nav class="topbar">
+      <a href="./index.html">← Back to RAUDAH</a>
+
+      <div class="theme-control">
+        <button class="theme-toggle" id="theme-toggle" type="button"
+          aria-label="Open theme options" aria-expanded="false"
+          aria-controls="theme-menu" title="Change RAUDAH theme">☼</button>
+
+        <div class="theme-menu" id="theme-menu" hidden>
+          <div class="theme-menu-heading">
+            <div>
+              <strong>RAUDAH Atmosphere</strong>
+              <small>Choose your mood</small>
+            </div>
+            <button class="theme-close" id="theme-close" type="button" aria-label="Close theme menu">×</button>
+          </div>
+
+          <button class="theme-mode-button" type="button" data-mode="auto">
+            <span>⏱️</span>
+            <span><strong>Automatic</strong><small>Changes with local time</small></span>
+            <span class="mode-check"></span>
+          </button>
+
+          <button class="theme-mode-button" type="button" data-mode="manual">
+            <span>🎨</span>
+            <span><strong>Manual themes</strong><small>Choose a theme yourself</small></span>
+            <span class="mode-check"></span>
+          </button>
+
+          <div class="theme-menu-divider"></div>
+          <p class="theme-group-label">TIME OF DAY</p>
+          <div class="theme-options">
+            <button class="theme-option" type="button" data-theme-choice="sunrise"><span>🌅</span>Sunrise</button>
+            <button class="theme-option" type="button" data-theme-choice="day"><span>☀️</span>Day</button>
+            <button class="theme-option" type="button" data-theme-choice="afternoon"><span>🌤️</span>Afternoon</button>
+            <button class="theme-option" type="button" data-theme-choice="sunset"><span>🌇</span>Sunset</button>
+            <button class="theme-option" type="button" data-theme-choice="night"><span>🌙</span>Night</button>
+          </div>
+
+          <div class="theme-menu-divider"></div>
+          <p class="theme-group-label">WEATHER &amp; MOOD</p>
+          <div class="theme-options">
+            <button class="theme-option" type="button" data-theme-choice="fullmoon"><span>🌕</span>Full Moon</button>
+            <button class="theme-option" type="button" data-theme-choice="rain"><span>🌧️</span>Rain</button>
+            <button class="theme-option" type="button" data-theme-choice="hot"><span>🔥</span>Hot Day</button>
+            <button class="theme-option" type="button" data-theme-choice="nature"><span>🌿</span>Nature</button>
+          </div>
+
+          <p class="theme-menu-note" id="theme-status" aria-live="polite">Automatic mode is on.</p>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-icon">
+        <div class="icon">🖼️</div>
+      </div>
+      <div class="hero-text">
+        <h1>MY GALLERY</h1>
+        <p class="tagline">Little moments, lasting memories.</p>
+        <div class="hero-details">
+          <span class="hero-badge">🏡 RAUDAH</span>
+          <span class="hero-badge">✨ My memories collection</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="dashboard">
+        <div class="panel">
+
+          <div class="profile-heading-row">
+            <h2>🖼️ Add Photos</h2>
+            <button class="profile-edit-button" id="gallery-add-button" type="button">
+              ＋ Add Photos
+            </button>
+          </div>
+
+          <form class="profile-edit-form" id="gallery-form" hidden>
+            <h3>Choose Your Photos</h3>
+
+            <div class="gallery-upload-area">
+              <label class="profile-form-field">
+                <span>Select one or multiple photos *</span>
+                <input
+                  class="gallery-file-input"
+                  id="gallery-files"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+                  multiple
+                >
+              </label>
+
+              <p class="gallery-hint">
+                Maximum 20 photos per upload. Each photo can be up to 10 MB.
+              </p>
+
+              <div id="gallery-preview-grid" class="gallery-preview-grid"></div>
+
+              <div class="profile-form-actions">
+                <button class="profile-save-button" id="gallery-save-button" type="submit">
+                  Upload Photos
+                </button>
+                <button class="profile-cancel-button" id="gallery-cancel-button" type="button">
+                  Cancel
+                </button>
+              </div>
+
+              <p class="profile-form-message gallery-form-message"
+                 id="gallery-form-message" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+
+        </div>
+      </section>
+
+      <section class="explore-section">
+        <h2>✨ My Memories</h2>
+
+        <div id="gallery-list" aria-live="polite">
+          <p class="loading">Loading gallery...</p>
+        </div>
+
+        <p class="profile-form-message" id="gallery-status"
+           role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Dream · Capture · Remember</p>
+      <span>RAUDAH Gallery 🖼️</span>
+    </footer>
+
+  </div>
+</div>
+
+<script src="gallery.js"></script>
+</body>
+</html>

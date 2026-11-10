@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming | RAUDAH</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gaming-dashboard { max-width: 1100px; margin: 30px auto; }
+        .gaming-form { display: grid; gap: 15px; }
+        .gaming-form label { display: grid; gap: 7px; font-weight: 600; }
+        .gaming-form input, .gaming-form textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid rgba(100,120,90,.3);
+            border-radius: 9px;
+            background: var(--input-bg, rgba(255,255,255,.65));
+            color: inherit;
+            font: inherit;
+            box-sizing: border-box;
+        }
+        .gaming-form textarea { min-height: 110px; resize: vertical; }
+        .gaming-submit {
+            border: 0;
+            border-radius: 9px;
+            padding: 12px 20px;
+            background: #718b68;
+            color: white;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            justify-self: start;
+        }
+        .gaming-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
+        .game-card {
+            padding: 20px;
+            border-radius: 13px;
+            border: 1px solid rgba(100,120,90,.22);
+            background: var(--panel-bg, rgba(255,255,255,.55));
+            overflow-wrap: anywhere;
+        }
+        .game-card h3 { margin: 0 0 10px; }
+        .game-rank {
+            display: inline-block;
+            padding: 5px 11px;
+            border-radius: 20px;
+            background: rgba(113,139,104,.18);
+            margin-bottom: 12px;
+            font-size: .88rem;
+        }
+        .game-details { white-space: pre-wrap; line-height: 1.6; }
+        .game-actions { display: flex; gap: 9px; margin-top: 16px; }
+        .game-action {
+            border: 0;
+            border-radius: 8px;
+            padding: 8px 13px;
+            color: white;
+            cursor: pointer;
+            font: inherit;
+        }
+        .game-edit { background: #718b68; }
+        .game-delete { background: #a65f56; }
+        .gaming-message { min-height: 22px; margin-top: 10px; }
+        .gaming-empty { text-align: center; padding: 30px 10px; opacity: .7; }
+        .gaming-form-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+        .gaming-cancel {
+            border: 0;
+            border-radius: 9px;
+            padding: 12px 18px;
+            background: #8c927f;
+            color: white;
+            cursor: pointer;
+            font: inherit;
+        }
+    </style>
+</head>
+<body>
+<div class="page-layout">
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-icon">🏡</span>
+            <span>The Cabin Village</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="./index.html" class="nav-link"><span class="nav-icon">🏠</span><span>Home</span></a>
+            <a href="./index.html#profile" class="nav-link"><span class="nav-icon">👤</span><span>Profile</span></a>
+            <a href="projects.html" class="nav-link"><span class="nav-icon">📁</span><span>Projects</span></a>
+            <a href="poetry.html" class="nav-link"><span class="nav-icon">✍️</span><span>Poetry</span></a>
+            <a href="skills.html" class="nav-link"><span class="nav-icon">🌱</span><span>Skills</span></a>
+            <a href="achievement.html" class="nav-link"><span class="nav-icon">🏆</span><span>Achievement</span></a>
+            <a href="gallery.html" class="nav-link"><span class="nav-icon">🖼️</span><span>Gallery</span></a>
+            <a href="diary.html" class="nav-link"><span class="nav-icon">📖</span><span>Diary</span></a>
+            <a href="gaming.html" class="nav-link active"><span class="nav-icon">🎮</span><span>Gaming</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="../../index.html" class="nav-link"><span class="nav-icon">🌳</span><span>Village Home</span></a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="topbar-greeting">Your games, your journey</p>
+                <h2>My Gaming Zone 🎮</h2>
+            </div>
+
+            <div class="theme-control">
+                <button id="theme-toggle" class="theme-toggle" type="button">🎨 Theme</button>
+                <div id="theme-menu" class="theme-menu" hidden>
+                    <div class="theme-menu-heading">
+                        <strong>Choose your atmosphere</strong>
+                        <button id="theme-close" type="button">✕</button>
+                    </div>
+                    <div class="theme-mode-buttons">
+                        <button class="theme-mode-button" data-mode="auto" type="button">Automatic</button>
+                        <button class="theme-mode-button" data-mode="manual" type="button">Manual</button>
+                    </div>
+                    <div class="theme-options">
+                        <button class="theme-option" data-theme-choice="sunrise" type="button">🌅 Sunrise</button>
+                        <button class="theme-option" data-theme-choice="day" type="button">☀️ Day</button>
+                        <button class="theme-option" data-theme-choice="afternoon" type="button">🌤️ Afternoon</button>
+                        <button class="theme-option" data-theme-choice="sunset" type="button">🌇 Sunset</button>
+                        <button class="theme-option" data-theme-choice="night" type="button">🌙 Night</button>
+                        <button class="theme-option" data-theme-choice="fullmoon" type="button">🌕 Full Moon</button>
+                        <button class="theme-option" data-theme-choice="rain" type="button">🌧️ Rain</button>
+                        <button class="theme-option" data-theme-choice="hot" type="button">🔥 Hot Day</button>
+                        <button class="theme-option" data-theme-choice="nature" type="button">🌿 Nature</button>
+                    </div>
+                    <p id="theme-status" class="theme-menu-note">Automatic theme is on.</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-icon">🎮</div>
+            <div class="hero-text">
+                <h1>My Gaming Zone</h1>
+                <p>Every match, every level, every achievement — my gaming journey.</p>
+                <div class="hero-details">
+                    <span class="hero-badge">RAUDAH · GAMING COLLECTION</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard gaming-dashboard">
+            <section class="panel">
+                <div class="profile-heading-row">
+                    <div>
+                        <h2 id="gaming-form-heading">Add a Game</h2>
+                        <p>Keep track of the games you play and your progress.</p>
+                    </div>
+                </div>
+
+                <form id="gaming-form" class="gaming-form">
+                    <label>
+                        Game Name
+                        <input id="game-name" type="text" maxlength="120" placeholder="e.g. Minecraft, Valorant, GTA V" required>
+                    </label>
+
+                    <label>
+                        Rank / Level
+                        <input id="game-rank" type="text" maxlength="100" placeholder="e.g. Diamond, Level 50, Beginner">
+                    </label>
+
+                    <label>
+                        Details
+                        <textarea id="game-details" maxlength="3000" placeholder="Write about your progress, favourite mode, achievements, or anything about this game..."></textarea>
+                    </label>
+
+                    <div class="gaming-form-buttons">
+                        <button id="gaming-submit" class="gaming-submit" type="submit">＋ Add Game</button>
+                        <button id="gaming-cancel" class="gaming-cancel" type="button" hidden>Cancel Edit</button>
+                    </div>
+                </form>
+
+                <p id="gaming-message" class="gaming-message" aria-live="polite"></p>
+            </section>
+
+            <section class="panel" style="margin-top:25px;">
+                <div class="profile-heading-row">
+                    <div>
+                        <h2>My Games</h2>
+                        <p>Your personal gaming collection.</p>
+                    </div>
+                </div>
+                <div id="gaming-list" class="gaming-cards">
+                    <p>Loading your games...</p>
+                </div>
+            </section>
+        </section>
+
+        <footer class="footer">
+            <p>Made with care · RAUDAH · The Cabin Village</p>
+        </footer>
+    </main>
+</div>
+
+<script src="gaming.js"></script>
+</body>
+</html>

@@ -1,30 +1,259 @@
+
 <!DOCTYPE html>
-<!--
-  YOUR CABIN. This whole folder is yours: change the HTML, CSS and JavaScript
-  however you like. Add images, fonts, extra pages, games, anything.
-  Keep the "Back to the village" link so visitors can get home.
--->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Cabin</title>
+  <meta name="theme-color" content="#B7CDB0">
+  <title>RAUDAH | The Cabin Village</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <a class="back" href="../../index.html">← Back to the village</a>
+<body data-theme="nature">
+<div class="page-layout">
 
-  <header class="hero">
-    <div class="icon" id="icon"></div>
-    <h1 id="title">Loading…</h1>
-    <p id="owner"></p>
-  </header>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🏡</div>
+      <h2>The Cabin<br>Village</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#top" class="nav-link active"><span class="nav-icon">⌂</span><span>Home</span></a>
+      <a href="#profile" class="nav-link"><span class="nav-icon">👤</span><span>Profile</span></a>
+      <a href="projects.html" class="nav-link"><span class="nav-icon">🚀</span><span>Projects</span></a>
+      <a href="poetry.html" class="nav-link"><span class="nav-icon">✍️</span><span>Poetry</span></a>
+      <a href="skills.html" class="nav-link"><span class="nav-icon">⚡</span><span>Skills</span></a>
+      <a href="achievement.html" class="nav-link"><span class="nav-icon">🏆</span><span>Achievement</span></a>
+      <a href="gallery.html" class="nav-link"><span class="nav-icon">🖼️</span><span>Gallery</span></a>
+      <a href="diary.html" class="nav-link"><span class="nav-icon">📖</span><span>Diary</span></a>
+      <a href="gaming.html" class="nav-link"><span class="nav-icon">🎮</span><span>Gaming</span></a>
+    </nav>
+  </aside>
 
-  <main>
-    <h2>Cycle updates</h2>
-    <ul id="cycles"></ul>
-  </main>
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
 
-  <script src="script.js"></script>
+    <!-- TOPBAR -->
+    <nav class="topbar">
+      <a href="../../index.html" class="back">← Back to the village</a>
+
+      <div class="theme-control">
+        <button class="theme-toggle" id="theme-toggle" type="button"
+          aria-label="Open theme options" aria-expanded="false"
+          aria-controls="theme-menu" title="Change RAUDAH theme">☼</button>
+
+        <div class="theme-menu" id="theme-menu" hidden>
+          <div class="theme-menu-heading">
+            <div>
+              <strong>RAUDAH Atmosphere</strong>
+              <small>Choose your mood</small>
+            </div>
+            <button class="theme-close" id="theme-close" type="button" aria-label="Close theme menu">×</button>
+          </div>
+
+          <button class="theme-mode-button" type="button" data-mode="auto">
+            <span>⏱️</span>
+            <span><strong>Automatic</strong><small>Changes with local time</small></span>
+            <span class="mode-check"></span>
+          </button>
+
+          <button class="theme-mode-button" type="button" data-mode="manual">
+            <span>🎨</span>
+            <span><strong>Manual themes</strong><small>Choose a theme yourself</small></span>
+            <span class="mode-check"></span>
+          </button>
+
+          <div class="theme-menu-divider"></div>
+          <p class="theme-group-label">TIME OF DAY</p>
+          <div class="theme-options">
+            <button class="theme-option" type="button" data-theme-choice="sunrise"><span>🌅</span>Sunrise</button>
+            <button class="theme-option" type="button" data-theme-choice="day"><span>☀️</span>Day</button>
+            <button class="theme-option" type="button" data-theme-choice="afternoon"><span>🌤️</span>Afternoon</button>
+            <button class="theme-option" type="button" data-theme-choice="sunset"><span>🌇</span>Sunset</button>
+            <button class="theme-option" type="button" data-theme-choice="night"><span>🌙</span>Night</button>
+          </div>
+
+          <div class="theme-menu-divider"></div>
+          <p class="theme-group-label">WEATHER &amp; MOOD</p>
+          <div class="theme-options">
+            <button class="theme-option" type="button" data-theme-choice="fullmoon"><span>🌕</span>Full Moon</button>
+            <button class="theme-option" type="button" data-theme-choice="rain"><span>🌧️</span>Rain</button>
+            <button class="theme-option" type="button" data-theme-choice="hot"><span>🔥</span>Hot Day</button>
+            <button class="theme-option" type="button" data-theme-choice="nature"><span>🌿</span>Nature</button>
+          </div>
+
+          <p class="theme-menu-note" id="theme-status" aria-live="polite">Automatic mode is on.</p>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="top">
+      <div class="hero-icon"><div class="icon" id="icon">🥰</div></div>
+      <div class="hero-text">
+        <h1 id="title">RAUDAH</h1>
+        <p class="tagline">A place where thoughts bloom and ideas grow.</p>
+        <div class="hero-details">
+          <span class="hero-badge">👤 <span id="owner">Loading...</span></span>
+          <span class="hero-badge">👑 Cabin 6</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- CABIN INFORMATION -->
+      <section class="dashboard">
+        <div class="panel cabin-info" id="profile">
+          <div class="profile-heading-row">
+            <h2>⭐ My Cabin Info</h2>
+            <button class="profile-edit-button" id="edit-profile-button" type="button">✏️ Edit Profile</button>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <span>👤 Owner</span>
+              <strong id="info-owner">Loading...</strong>
+            </div>
+            <div class="info-item">
+              <span>👑 Cabin Title</span>
+              <strong id="info-title">RAUDAH</strong>
+            </div>
+            <div class="info-item">
+              <span>📞 Phone Number</span>
+              <strong id="info-phone">Not added yet</strong>
+            </div>
+            <div class="info-item">
+              <span>✉️ Email Address</span>
+              <strong id="info-email">Not added yet</strong>
+            </div>
+          </div>
+
+          <form class="profile-edit-form" id="profile-edit-form" hidden>
+            <div class="profile-form-grid">
+              <label class="profile-form-field">
+                <span>Owner Name</span>
+                <input id="edit-owner" name="owner" type="text" maxlength="80" required>
+              </label>
+              <label class="profile-form-field">
+                <span>Phone Number</span>
+                <input id="edit-phone" name="phoneNumber" type="tel" maxlength="30" placeholder="Enter phone number">
+              </label>
+              <label class="profile-form-field">
+                <span>Email Address</span>
+                <input id="edit-email" name="email" type="email" maxlength="120" placeholder="Enter email address">
+              </label>
+            </div>
+            <div class="profile-form-actions">
+              <button class="profile-save-button" id="save-profile-button" type="submit">Save Changes</button>
+              <button class="profile-cancel-button" id="cancel-profile-button" type="button">Cancel</button>
+            </div>
+            <p class="profile-form-message" id="profile-form-message" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- CALENDAR AND CLASSICAL CLOCK -->
+      <section class="time-dashboard">
+
+        <div class="time-card calendar-card">
+          <div class="time-card-heading">
+            <div class="heading-icon">🗓️</div>
+            <div>
+              <h2>My Calendar</h2>
+              <p>Every day is a new beginning</p>
+            </div>
+          </div>
+
+          <div class="calendar-header">
+            <button id="prev-month" type="button" aria-label="Previous month">❮</button>
+            <h3 id="month-year">Loading...</h3>
+            <button id="next-month" type="button" aria-label="Next month">❯</button>
+          </div>
+
+          <div class="calendar-grid" id="calendar"></div>
+
+          <div class="calendar-note">
+            <span class="today-dot"></span>
+            <span>Today's Date</span>
+          </div>
+        </div>
+
+        <div class="time-card clock-card">
+          <div class="time-card-heading">
+            <div class="heading-icon">🕰️</div>
+            <div>
+              <h2>Classical Time</h2>
+              <p>Time moves, memories stay</p>
+            </div>
+          </div>
+
+          <div class="clock-frame">
+            <div class="analog-clock" aria-label="Live analog clock">
+              <div class="clock-inner-ring"></div>
+              <div class="roman-number r12">XII</div>
+              <div class="roman-number r1">I</div>
+              <div class="roman-number r2">II</div>
+              <div class="roman-number r3">III</div>
+              <div class="roman-number r4">IV</div>
+              <div class="roman-number r5">V</div>
+              <div class="roman-number r6">VI</div>
+              <div class="roman-number r7">VII</div>
+              <div class="roman-number r8">VIII</div>
+              <div class="roman-number r9">IX</div>
+              <div class="roman-number r10">X</div>
+              <div class="roman-number r11">XI</div>
+              <div class="clock-hand hour-hand" id="hour-hand"></div>
+              <div class="clock-hand minute-hand" id="minute-hand"></div>
+              <div class="clock-hand second-hand" id="second-hand"></div>
+              <div class="clock-pin"></div>
+            </div>
+          </div>
+
+          <div class="clock-time" id="clock-digital">00:00:00</div>
+          <div class="clock-date" id="clock-date">Loading date...</div>
+        </div>
+
+      </section>
+
+      <!-- EXPLORE RAUDAH -->
+      <section class="explore-section">
+        <h2>✨ Explore RAUDAH</h2>
+        <div class="feature-section">
+          <a href="#top" class="feature-card"><span>🏡</span><h3>Home</h3><p>Your personal dashboard</p></a>
+          <a href="#profile" class="feature-card"><span>👤</span><h3>Profile</h3><p>Know more about me</p></a>
+          <a href="projects.html" class="feature-card" id="projects"><span>🚀</span><h3>Projects</h3><p>Ideas into reality</p></a>
+          <a href="poetry.html" class="feature-card" id="poetry"><span>✍️</span><h3>Poetry</h3><p>Words from the heart</p></a>
+          <a href="skills.html" class="feature-card" id="skills"><span>⚡</span><h3>Skills</h3><p>Things I can do</p></a>
+          <a href="achievement.html" class="feature-card" id="achievement"><span>🏆</span><h3>Achievement</h3><p>My milestones</p></a>
+          <a href="gallery.html" class="feature-card" id="gallery"><span>🖼️</span><h3>Gallery</h3><p>Memories captured in moments</p></a>
+          <a href="diary.html" class="feature-card" id="diary"><span>📖</span><h3>Diary</h3><p>My thoughts and daily stories</p></a>
+          <a href="gaming.html" class="feature-card" id="gaming"><span>🎮</span><h3>Gaming</h3><p>My gaming world and adventures</p></a>
+        </div>
+      </section>
+
+      <!-- RECENT ACTIVITY -->
+      <section class="recent-section">
+        <h2>🌿 Recent Activity</h2>
+        <div class="activity-card">
+          <span>✨</span>
+          <div>
+            <strong>Welcome to RAUDAH</strong>
+            <p>Your personal creative space is ready to grow.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p>Dream · Create · Explore</p>
+      <span>Welcome to RAUDAH 🌿</span>
+    </footer>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

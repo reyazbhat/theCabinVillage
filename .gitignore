@@ -1,0 +1,19 @@
+
+# Node dependencies
+**/node_modules/
+
+# Environment secrets
+.env
+**/.env
+
+# Uploaded gallery photos
+backend/uploads/
+**/uploads/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
