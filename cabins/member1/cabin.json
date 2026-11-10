@@ -3,6 +3,8 @@
   "cabinTitle": "Cabin 1",
   "icon": "🏡",
   "cycles": [
-    { "cycle": 1, "date": "2026-11-05", "status": "Planned", "notes": "Plan for the first cycle goes here." }
+    { 
+      "cycle": 1, "date": "2026-11-11", "status": "Planned", "notes": "Planned for a meet today at 5pm"
+  }
   ]
 }
